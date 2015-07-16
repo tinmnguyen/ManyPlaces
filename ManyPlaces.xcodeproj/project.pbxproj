@@ -15,6 +15,7 @@
 		267B94391B56CC0100027A94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 267B94371B56CC0100027A94 /* LaunchScreen.xib */; };
 		267B94451B56CC0100027A94 /* ManyPlacesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 267B94441B56CC0100027A94 /* ManyPlacesTests.m */; };
 		26FCE7041B5701CE0085E321 /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE7031B5701CE0085E321 /* ServerController.m */; };
+		26FCE7071B571CE80085E321 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE7061B571CE80085E321 /* Place.m */; };
 		353EA326AE08B602D3BB087E /* libPods-ManyPlaces.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB9827727354930C6222CCC /* libPods-ManyPlaces.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,8 @@
 		267B94441B56CC0100027A94 /* ManyPlacesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManyPlacesTests.m; sourceTree = "<group>"; };
 		26FCE7021B5701CE0085E321 /* ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerController.h; sourceTree = "<group>"; };
 		26FCE7031B5701CE0085E321 /* ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerController.m; sourceTree = "<group>"; };
+		26FCE7051B571CE80085E321 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		26FCE7061B571CE80085E321 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		B522426F850E459D9A4F1225 /* Pods-ManyPlaces.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManyPlaces.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ManyPlaces/Pods-ManyPlaces.debug.xcconfig"; sourceTree = "<group>"; };
 		B7A8468783823F7AFEDC63DA /* Pods-ManyPlaces.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManyPlaces.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManyPlaces/Pods-ManyPlaces.release.xcconfig"; sourceTree = "<group>"; };
 		BCB9827727354930C6222CCC /* libPods-ManyPlaces.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManyPlaces.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +104,8 @@
 				267B94281B56CC0100027A94 /* Supporting Files */,
 				26FCE7021B5701CE0085E321 /* ServerController.h */,
 				26FCE7031B5701CE0085E321 /* ServerController.m */,
+				26FCE7051B571CE80085E321 /* Place.h */,
+				26FCE7061B571CE80085E321 /* Place.m */,
 			);
 			path = ManyPlaces;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26FCE7071B571CE80085E321 /* Place.m in Sources */,
 				26FCE7041B5701CE0085E321 /* ServerController.m in Sources */,
 				267B94311B56CC0100027A94 /* ViewController.m in Sources */,
 				267B942E1B56CC0100027A94 /* AppDelegate.m in Sources */,

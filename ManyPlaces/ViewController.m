@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "ServerController.h"
+#import "Place.h"
+
+#import <Motis.h>
 
 @interface ViewController ()
 
@@ -23,7 +26,9 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [[ServerController sharedInstance] searchPlacesFor:@"tacos san francisco" withCompletion:^(NSDictionary *result) {
+    [[ServerController sharedInstance] searchPlacesFor:@"tacos san francisco" withCompletion:^(NSArray *result) {
+
+        Place *place = result[0];
         
     }];
 }

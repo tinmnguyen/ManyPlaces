@@ -7,6 +7,9 @@
 //
 
 #import "ServerController.h"
+#import "Place.h"
+
+#import <Motis.h>
 
 @implementation ServerController
 
@@ -22,7 +25,7 @@
     return sharedInstance;
 }
 
-- (void)searchPlacesFor:(NSString *)query withCompletion:(void (^)(NSDictionary *result))completion
+- (void)searchPlacesFor:(NSString *)query withCompletion:(void (^)(NSArray *))completion
 {
     NSString *nospaces = [query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kBASE_URL,kAPI_KEY,nospaces]];
@@ -36,11 +39,18 @@
             NSError *jsonError = nil;
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
             
-            completion(dict);
+            NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:20];
+            
+            for(NSDictionary *p in dict[@"results"])
+            {
+                [results addObject:[[Place alloc] initWithJSON:p]];
+            }
+            
+            completion(results);
             
         }
         else {
-            
+            completion(nil);
         }
         
     }];
