@@ -5,6 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ManyPlaces' do
 pod 'GoogleMaps'
+pod 'Motis'
 end
 
 target 'ManyPlacesTests' do
