@@ -10,6 +10,7 @@
 #import "ServerController.h"
 #import "Place.h"
 #import "PlaceDetailViewController.h"
+#import "PlaceTableViewCell.h"
 
 #import <Motis/Motis.h>
 
@@ -65,8 +66,8 @@
 }
 
 - (void)configureTableView
-{
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+{    
+    [self.tableView registerNib:[UINib nibWithNibName:@"PlaceTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"cell"];
     
     UIEdgeInsets insets = self.tableView.contentInset;
     insets.top = 44;
@@ -104,11 +105,16 @@
     return self.results ? self.results.count:0;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 64.0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    Place *place = self.results[indexPath.row];
-    cell.textLabel.text = place.name;
+    PlaceTableViewCell *cell = (PlaceTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    [cell setPlace:self.results[indexPath.row]];
     
     return cell;
 }

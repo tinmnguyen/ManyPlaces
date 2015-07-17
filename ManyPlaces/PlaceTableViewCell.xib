@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="64" id="Gru-NM-VDh" customClass="PlaceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gru-NM-VDh" id="mb1-4e-Wpy">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bNw-0k-yYW">
+                        <rect key="frame" x="0.0" y="10" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="V3K-4F-96r"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d47-xC-9ar">
+                        <rect key="frame" x="52" y="8" width="243" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="g8v-hV-HFl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfJ-Ge-XTQ" customClass="HCSStarRatingView">
+                        <rect key="frame" x="52" y="37" width="85" height="17"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="Jei-CC-vlg"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="d47-xC-9ar" secondAttribute="trailing" constant="-16" id="3CA-cH-JMt"/>
+                    <constraint firstAttribute="trailing" secondItem="kfJ-Ge-XTQ" secondAttribute="trailing" constant="150" id="3Ps-WM-Wam"/>
+                    <constraint firstItem="d47-xC-9ar" firstAttribute="top" secondItem="mb1-4e-Wpy" secondAttribute="topMargin" id="7Vo-S2-H8f"/>
+                    <constraint firstItem="bNw-0k-yYW" firstAttribute="leading" secondItem="mb1-4e-Wpy" secondAttribute="leading" id="FvC-FZ-2dN"/>
+                    <constraint firstItem="kfJ-Ge-XTQ" firstAttribute="top" secondItem="d47-xC-9ar" secondAttribute="bottom" constant="8" id="HZW-Px-PqT"/>
+                    <constraint firstItem="kfJ-Ge-XTQ" firstAttribute="bottom" secondItem="bNw-0k-yYW" secondAttribute="bottom" id="Kfz-WM-JYk"/>
+                    <constraint firstItem="kfJ-Ge-XTQ" firstAttribute="leading" secondItem="d47-xC-9ar" secondAttribute="leading" id="Xth-Bc-drC"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bNw-0k-yYW" secondAttribute="bottom" constant="1.5" id="Z5P-Rd-7eh"/>
+                    <constraint firstItem="bNw-0k-yYW" firstAttribute="top" secondItem="mb1-4e-Wpy" secondAttribute="topMargin" constant="2" id="uXQ-7r-0hu"/>
+                    <constraint firstItem="kfJ-Ge-XTQ" firstAttribute="leading" secondItem="bNw-0k-yYW" secondAttribute="trailing" constant="8" symbolic="YES" id="zS4-Ix-eSw"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="3Ps-WM-Wam"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="icon" destination="bNw-0k-yYW" id="YtS-06-HO0"/>
+                <outlet property="nameLabel" destination="d47-xC-9ar" id="wo0-aA-ubh"/>
+                <outlet property="ratingView" destination="kfJ-Ge-XTQ" id="ceq-59-nop"/>
+            </connections>
+            <point key="canvasLocation" x="142" y="210"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -36,6 +36,8 @@
     
     [self setTitle:@"Details"];
     
+    [self configureMapView];
+    
     [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details) {
         self.details = details;
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -48,7 +50,7 @@
 {
     [super viewDidAppear:animated];
     
-    [self configureMapView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
