@@ -28,7 +28,8 @@
 - (void)searchPlacesFor:(NSString *)query withCompletion:(void (^)(NSArray *))completion
 {
     NSString *nospaces = [query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kBASE_URL,kAPI_KEY,nospaces]];
+    NSString *urlstring = [kBASE_URL stringByAppendingString:[NSString stringWithFormat:kTEXTSEARCH_PATH, kAPI_KEY, nospaces ]];
+    NSURL *url = [NSURL URLWithString:urlstring];
     
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -47,6 +48,32 @@
             }
             
             completion(results);
+            
+        }
+        else {
+            completion(nil);
+        }
+        
+    }];
+    
+    [task resume];
+}
+
+- (void)getDetailsForPlace:(NSString *)placeId withCompleteion:(void (^)(PlaceDetails *))completion
+{
+    NSString *urlstring = [kBASE_URL stringByAppendingString:[NSString stringWithFormat:kDETAILSSEARCH_PATH, kAPI_KEY, placeId ]];
+    NSURL *url = [NSURL URLWithString:urlstring];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (error == nil) {
+            NSError *jsonError = nil;
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            
+            PlaceDetails *detail = [[PlaceDetails alloc] initWithJSON:dict[@"result"]];
+            
+            completion(detail);
             
         }
         else {

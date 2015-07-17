@@ -7,6 +7,7 @@
 //
 
 #import "PlaceDetailViewController.h"
+#import "ServerController.h"
 #import <MapKit/MapKit.h>
 
 @interface PlaceDetailViewController ()
@@ -15,6 +16,7 @@
 
 @property (nonatomic,weak) IBOutlet UITableView *commentsView;
 
+@property (nonatomic,strong) PlaceDetails *details;
 
 @end
 
@@ -29,7 +31,9 @@
 {
     [super viewWillAppear:animated];
     
-    
+    [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details) {
+        self.details = details;
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated

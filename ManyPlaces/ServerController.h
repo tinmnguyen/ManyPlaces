@@ -6,10 +6,13 @@
 //  Copyright (c) 2015 Tin Nguyen. All rights reserved.
 //
 
-#define kAPI_KEY @"AIzaSyCaHttKTZM9YRpydBI__YhJMppCoCp4984"
-#define kBASE_URL @"https://maps.googleapis.com/maps/api/place/textsearch/json?key=%@&query=%@"
+#define kAPI_KEY            @"AIzaSyCaHttKTZM9YRpydBI__YhJMppCoCp4984"
+#define kBASE_URL           @"https://maps.googleapis.com/maps/api/place"
+#define kTEXTSEARCH_PATH    @"/textsearch/json?key=%@&query=%@"
+#define kDETAILSSEARCH_PATH @"/details/json?key=%@&placeid=%@"
 
 #import <Foundation/Foundation.h>
+#import "PlaceDetails.h"
 
 @interface ServerController : NSObject
 
@@ -17,4 +20,5 @@
 
 - (void)searchPlacesFor:(NSString *)query withCompletion:(void (^)(NSArray *result))completion;
 
+- (void)getDetailsForPlace:(NSString *)placeId withCompleteion:(void (^)(PlaceDetails *details))completion;
 @end
