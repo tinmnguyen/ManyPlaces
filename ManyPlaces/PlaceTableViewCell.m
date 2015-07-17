@@ -8,6 +8,7 @@
 
 #import "PlaceTableViewCell.h"
 #import <HCSStarRatingView/HCSStarRatingView.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PlaceTableViewCell ()
 
@@ -31,6 +32,7 @@
     self.nameLabel.text = self.currentPlace.name;
     self.ratingView.value = self.currentPlace.rating;
     
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:self.currentPlace.iconUrl] placeholderImage:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

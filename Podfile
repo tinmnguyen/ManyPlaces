@@ -11,6 +11,7 @@ pod 'GoogleMaps'
 pod 'Motis'
 pod 'DCIntrospect-ARC'
 pod 'HCSStarRatingView', :git => 'https://github.com/hugocampossousa/HCSStarRatingView.git'
+pod 'SDWebImage', '~>3.7'
 end
 
 target 'ManyPlacesTests' do

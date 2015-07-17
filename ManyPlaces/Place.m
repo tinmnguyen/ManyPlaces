@@ -32,7 +32,8 @@
         @"place_id": mts_key(placeId),
         @"rating": mts_key(rating),
         @"geometry.location.lat": mts_key(latitude),
-        @"geometry.location.lng": mts_key(longitude)
+        @"geometry.location.lng": mts_key(longitude),
+        @"icon": mts_key(iconUrl)
         };
 }
 

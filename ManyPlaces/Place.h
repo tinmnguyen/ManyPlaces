@@ -27,6 +27,9 @@
 // Computed location from coordinates
 @property(nonatomic,readonly) CLLocationCoordinate2D location;
 
+// Icon url
+@property (nonatomic,strong) NSString* iconUrl;
+
 // Convenience init. Takes in individual results from GMS
 - (instancetype)initWithJSON:(NSDictionary *)values;
 

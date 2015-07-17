@@ -14,9 +14,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bNw-0k-yYW">
-                        <rect key="frame" x="0.0" y="10" width="44" height="44"/>
+                        <rect key="frame" x="4" y="12" width="40" height="39.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="V3K-4F-96r"/>
+                            <constraint firstAttribute="width" constant="40" id="V3K-4F-96r"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d47-xC-9ar">
@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfJ-Ge-XTQ" customClass="HCSStarRatingView">
-                        <rect key="frame" x="52" y="37" width="85" height="17"/>
+                        <rect key="frame" x="52" y="37" width="85" height="14.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="85" id="Jei-CC-vlg"/>
@@ -49,12 +49,12 @@
                     <constraint firstAttribute="trailingMargin" secondItem="d47-xC-9ar" secondAttribute="trailing" constant="-16" id="3CA-cH-JMt"/>
                     <constraint firstAttribute="trailing" secondItem="kfJ-Ge-XTQ" secondAttribute="trailing" constant="150" id="3Ps-WM-Wam"/>
                     <constraint firstItem="d47-xC-9ar" firstAttribute="top" secondItem="mb1-4e-Wpy" secondAttribute="topMargin" id="7Vo-S2-H8f"/>
-                    <constraint firstItem="bNw-0k-yYW" firstAttribute="leading" secondItem="mb1-4e-Wpy" secondAttribute="leading" id="FvC-FZ-2dN"/>
+                    <constraint firstItem="bNw-0k-yYW" firstAttribute="leading" secondItem="mb1-4e-Wpy" secondAttribute="leading" constant="4" id="FvC-FZ-2dN"/>
                     <constraint firstItem="kfJ-Ge-XTQ" firstAttribute="top" secondItem="d47-xC-9ar" secondAttribute="bottom" constant="8" id="HZW-Px-PqT"/>
                     <constraint firstItem="kfJ-Ge-XTQ" firstAttribute="bottom" secondItem="bNw-0k-yYW" secondAttribute="bottom" id="Kfz-WM-JYk"/>
                     <constraint firstItem="kfJ-Ge-XTQ" firstAttribute="leading" secondItem="d47-xC-9ar" secondAttribute="leading" id="Xth-Bc-drC"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="bNw-0k-yYW" secondAttribute="bottom" constant="1.5" id="Z5P-Rd-7eh"/>
-                    <constraint firstItem="bNw-0k-yYW" firstAttribute="top" secondItem="mb1-4e-Wpy" secondAttribute="topMargin" constant="2" id="uXQ-7r-0hu"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bNw-0k-yYW" secondAttribute="bottom" constant="4" id="Z5P-Rd-7eh"/>
+                    <constraint firstItem="bNw-0k-yYW" firstAttribute="top" secondItem="mb1-4e-Wpy" secondAttribute="topMargin" constant="4" id="uXQ-7r-0hu"/>
                     <constraint firstItem="kfJ-Ge-XTQ" firstAttribute="leading" secondItem="bNw-0k-yYW" secondAttribute="trailing" constant="8" symbolic="YES" id="zS4-Ix-eSw"/>
                 </constraints>
                 <variation key="default">
