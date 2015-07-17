@@ -18,6 +18,7 @@
 		26FCE7071B571CE80085E321 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE7061B571CE80085E321 /* Place.m */; };
 		26FCE70B1B586ED60085E321 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCE70A1B586ED60085E321 /* QuartzCore.framework */; };
 		26FCE70F1B5889BD0085E321 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE70E1B5889BD0085E321 /* PlaceDetailViewController.m */; };
+		26FCE7111B588D180085E321 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCE7101B588D180085E321 /* MapKit.framework */; };
 		353EA326AE08B602D3BB087E /* libPods-ManyPlaces.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB9827727354930C6222CCC /* libPods-ManyPlaces.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		26FCE70A1B586ED60085E321 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		26FCE70D1B5889BD0085E321 /* PlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailViewController.h; sourceTree = "<group>"; };
 		26FCE70E1B5889BD0085E321 /* PlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailViewController.m; sourceTree = "<group>"; };
+		26FCE7101B588D180085E321 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B522426F850E459D9A4F1225 /* Pods-ManyPlaces.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManyPlaces.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ManyPlaces/Pods-ManyPlaces.debug.xcconfig"; sourceTree = "<group>"; };
 		B7A8468783823F7AFEDC63DA /* Pods-ManyPlaces.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManyPlaces.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManyPlaces/Pods-ManyPlaces.release.xcconfig"; sourceTree = "<group>"; };
 		BCB9827727354930C6222CCC /* libPods-ManyPlaces.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManyPlaces.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26FCE7111B588D180085E321 /* MapKit.framework in Frameworks */,
 				26FCE70B1B586ED60085E321 /* QuartzCore.framework in Frameworks */,
 				353EA326AE08B602D3BB087E /* libPods-ManyPlaces.a in Frameworks */,
 			);
@@ -155,6 +158,7 @@
 		3DE97F36F7738554EC17D9AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26FCE7101B588D180085E321 /* MapKit.framework */,
 				26FCE70A1B586ED60085E321 /* QuartzCore.framework */,
 				BCB9827727354930C6222CCC /* libPods-ManyPlaces.a */,
 			);

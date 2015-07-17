@@ -103,10 +103,10 @@
             </objects>
             <point key="canvasLocation" x="1236" y="246"/>
         </scene>
-        <!--View Controller-->
+        <!--Place Detail View Controller-->
         <scene sceneID="TnN-UY-BL1">
             <objects>
-                <viewController id="ChV-7z-45g" sceneMemberID="viewController">
+                <viewController id="ChV-7z-45g" customClass="PlaceDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BVG-wS-2nB"/>
                         <viewControllerLayoutGuide type="bottom" id="faK-Hc-1HD"/>
@@ -114,8 +114,30 @@
                     <view key="view" contentMode="scaleToFill" id="ZCL-mV-x77">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Bkv-dP-Dkh">
+                                <rect key="frame" x="0.0" y="64" width="600" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="cX7-hB-6IL"/>
+                                </constraints>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="faK-Hc-1HD" firstAttribute="top" secondItem="Bkv-dP-Dkh" secondAttribute="bottom" constant="386" id="5ne-h5-0wg"/>
+                            <constraint firstItem="Bkv-dP-Dkh" firstAttribute="leading" secondItem="ZCL-mV-x77" secondAttribute="leading" id="7o6-kC-yD7"/>
+                            <constraint firstItem="Bkv-dP-Dkh" firstAttribute="top" secondItem="BVG-wS-2nB" secondAttribute="bottom" id="A6W-Gl-Xds"/>
+                            <constraint firstAttribute="trailing" secondItem="Bkv-dP-Dkh" secondAttribute="trailing" id="d29-6a-iUj"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5ne-h5-0wg"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="Bkv-dP-Dkh" id="D9u-4L-aCj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edh-ov-d8b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

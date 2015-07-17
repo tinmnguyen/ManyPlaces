@@ -7,8 +7,14 @@
 //
 
 #import "PlaceDetailViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface PlaceDetailViewController ()
+
+@property (nonatomic,weak) IBOutlet MKMapView *mapView;
+
+@property (nonatomic,weak) IBOutlet UITableView *commentsView;
+
 
 @end
 
@@ -19,9 +25,35 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self configureMapView];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)configureMapView
+{
+    MKPointAnnotation *point = [MKPointAnnotation new];
+    point.coordinate = self.currentPlace.location;
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.currentPlace.location, 1000, 1000);
+    
+    [self.mapView setRegion:viewRegion];
+    [self.mapView addAnnotation:point];
+    //self.mapView.userInteractionEnabled = NO;
 }
 
 /*

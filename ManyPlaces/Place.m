@@ -20,8 +20,8 @@
     return self;
 }
 
-- (CLLocation *)location {
-    return [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
+- (CLLocationCoordinate2D)location {
+    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
 }
 
 // For Motis JSON to NSObject mapping

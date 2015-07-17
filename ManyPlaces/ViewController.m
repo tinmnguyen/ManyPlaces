@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ServerController.h"
 #import "Place.h"
+#import "PlaceDetailViewController.h"
 
 #import <Motis.h>
 
@@ -51,6 +52,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    NSString *segueName = segue.identifier;
+    
+    if ([segueName isEqualToString:@"placeDetail"]) {
+        PlaceDetailViewController *placeView = (PlaceDetailViewController *)segue.destinationViewController;
+        placeView.currentPlace = self.results[self.tableView.indexPathForSelectedRow.row];
+    }
 }
 
 - (void)configureTableView
@@ -104,8 +115,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self performSegueWithIdentifier:@"placeDetail" sender:tableView];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"placeDetail" sender:self];
 }
 
 #pragma mark - UITextFieldDelegate

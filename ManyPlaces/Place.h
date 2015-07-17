@@ -25,7 +25,7 @@
 @property(nonatomic,copy) NSString *placeId;
 
 // Computed location from coordinates
-@property(nonatomic,readonly) CLLocation *location;
+@property(nonatomic,readonly) CLLocationCoordinate2D location;
 
 // Convenience init. Takes in individual results from GMS
 - (instancetype)initWithJSON:(NSDictionary *)values;
