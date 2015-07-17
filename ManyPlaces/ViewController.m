@@ -12,30 +12,142 @@
 
 #import <Motis.h>
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+
+@property (nonatomic,weak) IBOutlet UITextField *queryTextField;
+@property (nonatomic,weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic,strong) NSTimer *searchTimer;
+@property (nonatomic,strong) NSString *lastSearchedText;
+
+@property (nonatomic,strong) NSArray *results;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.results = [NSArray new];
+    [self configureTableView];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    [[ServerController sharedInstance] searchPlacesFor:@"tacos san francisco" withCompletion:^(NSArray *result) {
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
 
-        Place *place = result[0];
-        
-    }];
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.queryTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)configureTableView
+{
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.top = 44;
+    self.tableView.contentInset = insets;
+}
+
+- (void)searchForQuery:(NSString *)text
+{
+    if (text != nil && text.length > 1) {
+        [[ServerController sharedInstance] searchPlacesFor:text withCompletion:^(NSArray *result) {
+            self.results = result;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+            
+        }];
+    }
+}
+
+- (void)triggerTimerSearch
+{
+    [self searchForQuery:self.lastSearchedText];
+}
+
+#pragma mark - UITableViewDelegate & UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.results ? self.results.count:0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    Place *place = self.results[indexPath.row];
+    cell.textLabel.text = place.name;
+    
+    return cell;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (newText.length > 2 && textField.text.length < newText.length && ![string isEqualToString:@"\n"]) {
+        
+        [self.searchTimer invalidate];
+        self.searchTimer = [NSTimer timerWithTimeInterval:0.15
+                                                   target:self
+                                                 selector:@selector(triggerTimerSearch)
+                                                 userInfo:nil
+                                                  repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:self.searchTimer forMode:NSRunLoopCommonModes];
+        
+        self.lastSearchedText = newText;
+    }
+    else if (newText.length < textField.text.length || newText.length == 0) // backspace
+    {
+        self.lastSearchedText = nil;
+        self.results = nil;
+        [self.tableView reloadData];
+    }
+    
+    if ([string isEqualToString:@"\n"]) {
+        
+        [textField resignFirstResponder];
+        if (![newText isEqualToString:self.lastSearchedText]) {
+            [self.searchTimer invalidate];
+            [self searchForQuery:textField.text];
+        }
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    self.lastSearchedText = nil;
+    self.results = nil;
+    [self.tableView reloadData];
+    
+    return YES;
 }
 
 @end
