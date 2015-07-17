@@ -11,7 +11,7 @@
 #import "Place.h"
 #import "PlaceDetailViewController.h"
 
-#import <Motis.h>
+#import <Motis/Motis.h>
 
 @interface ViewController () <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -115,6 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.queryTextField resignFirstResponder];
     [self performSegueWithIdentifier:@"placeDetail" sender:tableView];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

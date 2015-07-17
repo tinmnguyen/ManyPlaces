@@ -20,7 +20,7 @@
 		26FCE70F1B5889BD0085E321 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE70E1B5889BD0085E321 /* PlaceDetailViewController.m */; };
 		26FCE7111B588D180085E321 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCE7101B588D180085E321 /* MapKit.framework */; };
 		26FCE7151B589DCE0085E321 /* PlaceDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE7141B589DCE0085E321 /* PlaceDetails.m */; };
-		353EA326AE08B602D3BB087E /* libPods-ManyPlaces.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB9827727354930C6222CCC /* libPods-ManyPlaces.a */; };
+		5021CB5436B63645774A0EF2 /* Pods_ManyPlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204468A8BE63358D653A9706 /* Pods_ManyPlaces.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		204468A8BE63358D653A9706 /* Pods_ManyPlaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ManyPlaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		267B94251B56CC0100027A94 /* ManyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		267B94291B56CC0100027A94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		267B942A1B56CC0100027A94 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		26FCE7141B589DCE0085E321 /* PlaceDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetails.m; sourceTree = "<group>"; };
 		B522426F850E459D9A4F1225 /* Pods-ManyPlaces.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManyPlaces.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ManyPlaces/Pods-ManyPlaces.debug.xcconfig"; sourceTree = "<group>"; };
 		B7A8468783823F7AFEDC63DA /* Pods-ManyPlaces.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManyPlaces.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManyPlaces/Pods-ManyPlaces.release.xcconfig"; sourceTree = "<group>"; };
-		BCB9827727354930C6222CCC /* libPods-ManyPlaces.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManyPlaces.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 			files = (
 				26FCE7111B588D180085E321 /* MapKit.framework in Frameworks */,
 				26FCE70B1B586ED60085E321 /* QuartzCore.framework in Frameworks */,
-				353EA326AE08B602D3BB087E /* libPods-ManyPlaces.a in Frameworks */,
+				5021CB5436B63645774A0EF2 /* Pods_ManyPlaces.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +173,7 @@
 			children = (
 				26FCE7101B588D180085E321 /* MapKit.framework */,
 				26FCE70A1B586ED60085E321 /* QuartzCore.framework */,
-				BCB9827727354930C6222CCC /* libPods-ManyPlaces.a */,
+				204468A8BE63358D653A9706 /* Pods_ManyPlaces.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -199,6 +199,7 @@
 				267B94221B56CC0100027A94 /* Frameworks */,
 				267B94231B56CC0100027A94 /* Resources */,
 				93365E37BCC50CB189DDE1E3 /* Copy Pods Resources */,
+				33B2C61AD6E0EE189A91593E /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -285,6 +286,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		33B2C61AD6E0EE189A91593E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ManyPlaces/Pods-ManyPlaces-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		93365E37BCC50CB189DDE1E3 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

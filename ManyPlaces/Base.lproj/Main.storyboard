@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lmn-Ix-0Ag">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lmn-Ix-0Ag">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="44" maxX="0.0" maxY="0.0"/>
@@ -121,22 +121,51 @@
                                     <constraint firstAttribute="height" constant="150" id="cX7-hB-6IL"/>
                                 </constraints>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.55000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NNv-aP-EMA">
+                                <rect key="frame" x="16" y="222" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="eRW-kI-iWr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKM-0D-Srt" customClass="HCSStarRatingView">
+                                <rect key="frame" x="206" y="251" width="189" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="189" id="0ZA-Ph-kLS"/>
+                                    <constraint firstAttribute="height" constant="30" id="xxR-tZ-AbV"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="faK-Hc-1HD" firstAttribute="top" secondItem="Bkv-dP-Dkh" secondAttribute="bottom" constant="386" id="5ne-h5-0wg"/>
                             <constraint firstItem="Bkv-dP-Dkh" firstAttribute="leading" secondItem="ZCL-mV-x77" secondAttribute="leading" id="7o6-kC-yD7"/>
+                            <constraint firstItem="dKM-0D-Srt" firstAttribute="centerX" secondItem="NNv-aP-EMA" secondAttribute="centerX" id="8SH-XR-bJ1"/>
                             <constraint firstItem="Bkv-dP-Dkh" firstAttribute="top" secondItem="BVG-wS-2nB" secondAttribute="bottom" id="A6W-Gl-Xds"/>
+                            <constraint firstItem="dKM-0D-Srt" firstAttribute="top" secondItem="NNv-aP-EMA" secondAttribute="bottom" constant="8" id="Bl3-gF-nag"/>
+                            <constraint firstItem="NNv-aP-EMA" firstAttribute="leading" secondItem="ZCL-mV-x77" secondAttribute="leadingMargin" id="TOO-L4-gdh"/>
+                            <constraint firstItem="NNv-aP-EMA" firstAttribute="top" secondItem="Bkv-dP-Dkh" secondAttribute="bottom" constant="8" symbolic="YES" id="bAV-9T-tSQ"/>
                             <constraint firstAttribute="trailing" secondItem="Bkv-dP-Dkh" secondAttribute="trailing" id="d29-6a-iUj"/>
+                            <constraint firstItem="faK-Hc-1HD" firstAttribute="top" secondItem="NNv-aP-EMA" secondAttribute="bottom" constant="357" id="mOw-O0-Jbk"/>
+                            <constraint firstItem="NNv-aP-EMA" firstAttribute="centerX" secondItem="Bkv-dP-Dkh" secondAttribute="centerX" id="xQo-yz-4y8"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="5ne-h5-0wg"/>
+                                <exclude reference="mOw-O0-Jbk"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="Bkv-dP-Dkh" id="D9u-4L-aCj"/>
+                        <outlet property="nameLabel" destination="NNv-aP-EMA" id="I20-32-30b"/>
+                        <outlet property="starView" destination="dKM-0D-Srt" id="u0R-09-uV6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edh-ov-d8b" userLabel="First Responder" sceneMemberID="firstResponder"/>

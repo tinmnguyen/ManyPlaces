@@ -7,7 +7,7 @@
 //
 
 #import "PlaceDetails.h"
-#import <Motis.h>
+#import <Motis/Motis.h>
 
 @implementation PlaceDetails
 

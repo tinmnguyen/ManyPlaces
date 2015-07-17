@@ -8,12 +8,15 @@
 
 #import "PlaceDetailViewController.h"
 #import "ServerController.h"
+#import <HCSStarRatingView/HCSStarRatingView.h>
 #import <MapKit/MapKit.h>
 
 @interface PlaceDetailViewController ()
 
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 
+@property (nonatomic,weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic,weak) IBOutlet HCSStarRatingView *starView;
 @property (nonatomic,weak) IBOutlet UITableView *commentsView;
 
 @property (nonatomic,strong) PlaceDetails *details;
@@ -31,8 +34,13 @@
 {
     [super viewWillAppear:animated];
     
+    [self setTitle:@"Details"];
+    
     [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details) {
         self.details = details;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self configureDetails];
+        });
     }];
 }
 
@@ -58,6 +66,13 @@
     [self.mapView setRegion:viewRegion];
     [self.mapView addAnnotation:point];
     //self.mapView.userInteractionEnabled = NO;
+}
+
+- (void)configureDetails
+{
+    self.nameLabel.text = self.details.name;
+    self.starView.value = self.currentPlace.rating;
+    self.starView.userInteractionEnabled = NO;
 }
 
 /*

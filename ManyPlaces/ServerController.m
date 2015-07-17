@@ -9,7 +9,7 @@
 #import "ServerController.h"
 #import "Place.h"
 
-#import <Motis.h>
+#import <Motis/Motis.h>
 
 @implementation ServerController
 

@@ -1,16 +1,28 @@
 PODS:
   - DCIntrospect-ARC (0.0.8)
   - GoogleMaps (1.10.1)
+  - HCSStarRatingView (1.2)
   - Motis (1.3.0)
 
 DEPENDENCIES:
   - DCIntrospect-ARC
   - GoogleMaps
+  - HCSStarRatingView (from `https://github.com/hugocampossousa/HCSStarRatingView.git`)
   - Motis
+
+EXTERNAL SOURCES:
+  HCSStarRatingView:
+    :git: https://github.com/hugocampossousa/HCSStarRatingView.git
+
+CHECKOUT OPTIONS:
+  HCSStarRatingView:
+    :commit: 91b2eba94b182568aeed2eeaebdc8963bf61e862
+    :git: https://github.com/hugocampossousa/HCSStarRatingView.git
 
 SPEC CHECKSUMS:
   DCIntrospect-ARC: 68a97cc2e99420b21bfcd66865b5376701f8e7f5
   GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
+  HCSStarRatingView: 398beb411f6197f3445bac8eb90962c3166597cb
   Motis: a5b1f6aa29ad14cd64e27c4fe15d9805c18c162f
 
 COCOAPODS: 0.37.2

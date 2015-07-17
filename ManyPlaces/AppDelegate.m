@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <DCIntrospect.h>
+#import <DCIntrospect_ARC/DCIntrospect.h>
 
 @interface AppDelegate ()
 
