@@ -17,6 +17,9 @@
 
 @property (nonatomic,weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic,weak) IBOutlet HCSStarRatingView *starView;
+@property (nonatomic,weak) IBOutlet UILabel *addressLabel;
+@property (nonatomic,weak) IBOutlet UIButton *phoneButton;
+
 @property (nonatomic,weak) IBOutlet UITableView *commentsView;
 
 @property (nonatomic,strong) PlaceDetails *details;
@@ -28,6 +31,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self resetView];
+    
+    __weak typeof(self) weakSelf = self;
+    [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details) {
+        weakSelf.details = details;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf configureDetails];
+        });
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -37,25 +50,24 @@
     [self setTitle:@"Details"];
     
     [self configureMapView];
-    
-    [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details) {
-        self.details = details;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self configureDetails];
-        });
-    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)resetView
+{
+    self.nameLabel.text     = @"";
+    self.starView.value     = 0;
+    self.addressLabel.text  = @"";
+    [self.phoneButton setTitle:@"" forState:UIControlStateNormal];
 }
 
 - (void)configureMapView
@@ -67,7 +79,11 @@
     
     [self.mapView setRegion:viewRegion];
     [self.mapView addAnnotation:point];
-    //self.mapView.userInteractionEnabled = NO;
+    
+    // Set map to 3D view
+    MKMapCamera *camera = self.mapView.camera;
+    camera.pitch = 45.0;
+    [self.mapView setCamera:camera];
 }
 
 - (void)configureDetails
@@ -75,6 +91,40 @@
     self.nameLabel.text = self.details.name;
     self.starView.value = self.currentPlace.rating;
     self.starView.userInteractionEnabled = NO;
+    self.addressLabel.text = [self.details getStreetAddress];
+    
+    //[self.details getCityAddress];
+    if (self.details.phoneNumber != nil) {
+        [self.phoneButton setTitle:self.details.phoneNumber forState:UIControlStateNormal];
+    }
+    else
+    {
+        self.phoneButton.enabled = NO;
+    }
+    
+}
+
+- (IBAction)phoneButtonDidPress:(UIButton *)sender {
+    
+    NSString *message = [NSString stringWithFormat:@"Call %@?", self.details.phoneNumber];
+    UIAlertController *alert    = [UIAlertController alertControllerWithTitle:message
+                                                                      message:@"Call me maybe"
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {}];
+    
+    UIAlertAction *yesAction    = [UIAlertAction actionWithTitle:@"Yes"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action) {
+                                                             [[UIApplication sharedApplication]openURL:[self.details getPhoneUrl]];
+                                                            }];
+    
+    [alert addAction:cancelAction];
+    [alert addAction:yesAction];
+    
+    [self presentViewController:alert animated:YES completion:^{}];
 }
 
 /*

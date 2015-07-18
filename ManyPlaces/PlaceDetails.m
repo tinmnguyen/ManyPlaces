@@ -20,6 +20,27 @@
     return self;
 }
 
+- (NSString *)getStreetAddress
+{
+    NSArray *strings    = [self.address componentsSeparatedByString:@","];
+    NSRange range       = [self.address rangeOfString:@", "];
+    NSRange newRange    = NSMakeRange(range.location + 2, (self.address.length - range.location) - 2);
+    
+    // Check case where there is no city or country
+    if (range.location > self.address.length) {
+        return strings[0];
+    }
+    
+    return [NSString stringWithFormat:@"%@\n%@",strings[0],[self.address substringWithRange:newRange]];
+}
+
+- (NSURL *)getPhoneUrl {
+    
+    NSString *phoneString = [[self.phoneNumber componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+        
+    return [NSURL URLWithString:[@"tel://" stringByAppendingString:phoneString]];
+}
+
 + (NSDictionary *)mts_mapping
 {
     return @{

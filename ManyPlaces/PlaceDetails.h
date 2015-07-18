@@ -17,6 +17,13 @@
 @property (nonatomic,copy) NSString *website;
 @property (nonatomic,copy) NSString *iconUrl;
 
+// Convenience init. Takes in JSON object from google
 - (instancetype)initWithJSON:(NSDictionary *)values;
+
+// Returns address with newline between street and city address
+- (NSString *)getStreetAddress;
+
+// Returns phone number as URL in form of tel://0000000000
+- (NSURL *)getPhoneUrl;
 
 @end
