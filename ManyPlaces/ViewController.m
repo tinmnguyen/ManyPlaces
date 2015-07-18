@@ -77,11 +77,13 @@
 - (void)searchForQuery:(NSString *)text
 {
     if (text != nil && text.length > 1) {
+        
+        __weak typeof(self) weakSelf = self;
         [[ServerController sharedInstance] searchPlacesFor:text withCompletion:^(NSArray *result) {
-            self.results = result;
+            weakSelf.results = result;
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
+                [weakSelf.tableView reloadData];
             });
             
         }];
