@@ -49,7 +49,8 @@
              @"formatted_phone_number":mts_key(phoneNumber),
              @"url":mts_key(googleUrl),
              @"website":mts_key(website),
-             @"icon":mts_key(iconUrl)
+             @"icon":mts_key(iconUrl),
+             @"reviews":mts_key(reviews)
              };
 }
 

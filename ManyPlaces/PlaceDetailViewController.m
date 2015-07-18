@@ -7,11 +7,12 @@
 //
 
 #import "PlaceDetailViewController.h"
+#import "ReviewTableViewCell.h"
 #import "ServerController.h"
 #import <HCSStarRatingView/HCSStarRatingView.h>
 #import <MapKit/MapKit.h>
 
-@interface PlaceDetailViewController ()
+@interface PlaceDetailViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 
@@ -20,7 +21,7 @@
 @property (nonatomic,weak) IBOutlet UILabel *addressLabel;
 @property (nonatomic,weak) IBOutlet UIButton *phoneButton;
 
-@property (nonatomic,weak) IBOutlet UITableView *commentsView;
+@property (nonatomic,weak) IBOutlet UITableView *reviewsTableViews;
 
 @property (nonatomic,strong) PlaceDetails *details;
 
@@ -33,12 +34,14 @@
     // Do any additional setup after loading the view.
     
     [self resetView];
+    [self setTitle:@"Details"];
     
     __weak typeof(self) weakSelf = self;
     [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details) {
         weakSelf.details = details;
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf configureDetails];
+            [weakSelf configureTableView];
         });
     }];
 }
@@ -47,14 +50,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self setTitle:@"Details"];
-    
     [self configureMapView];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,7 +89,6 @@
     self.starView.userInteractionEnabled = NO;
     self.addressLabel.text = [self.details getStreetAddress];
     
-    //[self.details getCityAddress];
     if (self.details.phoneNumber != nil) {
         [self.phoneButton setTitle:self.details.phoneNumber forState:UIControlStateNormal];
     }
@@ -101,7 +96,13 @@
     {
         self.phoneButton.enabled = NO;
     }
-    
+}
+
+- (void)configureTableView
+{
+    [self.reviewsTableViews registerNib:[UINib nibWithNibName:@"ReviewTableViewCell" bundle:[NSBundle mainBundle]]
+                 forCellReuseIdentifier:@"reviewCell"];
+    [self.reviewsTableViews reloadData];
 }
 
 - (IBAction)phoneButtonDidPress:(UIButton *)sender {
@@ -125,6 +126,30 @@
     [alert addAction:yesAction];
     
     [self presentViewController:alert animated:YES completion:^{}];
+}
+
+#pragma mark - UITableViewDelegate & UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *review = self.details.reviews[indexPath.row];
+    NSString *text = review[@"text"];
+    
+    return [ReviewTableViewCell heightOfCellFor:text withWidth:tableView.frame.size.width];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.details.reviews ? self.details.reviews.count : 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ReviewTableViewCell *cell = (ReviewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"reviewCell"];
+    
+    [cell setData:self.details.reviews[indexPath.row]];
+    
+    return cell;
 }
 
 /*

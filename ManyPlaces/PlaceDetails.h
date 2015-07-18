@@ -16,6 +16,7 @@
 @property (nonatomic,copy) NSString *googleUrl;
 @property (nonatomic,copy) NSString *website;
 @property (nonatomic,copy) NSString *iconUrl;
+@property (nonatomic,strong) NSMutableArray *reviews;
 
 // Convenience init. Takes in JSON object from google
 - (instancetype)initWithJSON:(NSDictionary *)values;

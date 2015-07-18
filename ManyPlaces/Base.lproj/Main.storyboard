@@ -173,6 +173,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4Nc-dl-aqn">
                                 <rect key="frame" x="0.0" y="389" width="600" height="211"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ChV-7z-45g" id="xFt-rL-vtb"/>
+                                    <outlet property="delegate" destination="ChV-7z-45g" id="sUM-NX-ZlY"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -215,6 +219,7 @@
                         <outlet property="mapView" destination="Bkv-dP-Dkh" id="D9u-4L-aCj"/>
                         <outlet property="nameLabel" destination="NNv-aP-EMA" id="I20-32-30b"/>
                         <outlet property="phoneButton" destination="GZT-nq-CVE" id="hbN-Pv-lGZ"/>
+                        <outlet property="reviewsTableViews" destination="4Nc-dl-aqn" id="bcY-nG-Ets"/>
                         <outlet property="starView" destination="dKM-0D-Srt" id="u0R-09-uV6"/>
                     </connections>
                 </viewController>
@@ -238,7 +243,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OD-Gy-k1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424" y="246"/>
+            <point key="canvasLocation" x="544" y="246"/>
         </scene>
     </scenes>
 </document>
