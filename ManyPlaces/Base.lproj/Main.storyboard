@@ -90,7 +90,11 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Wow Search" id="QZf-G6-SYz"/>
+                    <navigationItem key="navigationItem" title="Wow Search" id="QZf-G6-SYz">
+                        <barButtonItem key="rightBarButtonItem" image="Location" id="4lH-Y1-qKM">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
@@ -246,4 +250,7 @@
             <point key="canvasLocation" x="544" y="246"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Location" width="24" height="24"/>
+    </resources>
 </document>

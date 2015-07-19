@@ -18,6 +18,7 @@
 		26A7437D1B5995DC00C8FC95 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26A7437C1B5995DC00C8FC95 /* PlaceTableViewCell.xib */; };
 		26A743801B5A1AA800C8FC95 /* ReviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A7437F1B5A1AA800C8FC95 /* ReviewTableViewCell.m */; };
 		26A743821B5A1AC900C8FC95 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26A743811B5A1AC900C8FC95 /* ReviewTableViewCell.xib */; };
+		26A743851B5B73F500C8FC95 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A743841B5B73F500C8FC95 /* LocationController.m */; };
 		26FCE7041B5701CE0085E321 /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE7031B5701CE0085E321 /* ServerController.m */; };
 		26FCE7071B571CE80085E321 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE7061B571CE80085E321 /* Place.m */; };
 		26FCE70B1B586ED60085E321 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCE70A1B586ED60085E321 /* QuartzCore.framework */; };
@@ -58,6 +59,8 @@
 		26A7437E1B5A1AA800C8FC95 /* ReviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTableViewCell.h; sourceTree = "<group>"; };
 		26A7437F1B5A1AA800C8FC95 /* ReviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTableViewCell.m; sourceTree = "<group>"; };
 		26A743811B5A1AC900C8FC95 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
+		26A743831B5B73F500C8FC95 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		26A743841B5B73F500C8FC95 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		26FCE7021B5701CE0085E321 /* ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerController.h; sourceTree = "<group>"; };
 		26FCE7031B5701CE0085E321 /* ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerController.m; sourceTree = "<group>"; };
 		26FCE7051B571CE80085E321 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				267B94281B56CC0100027A94 /* Supporting Files */,
 				26FCE7021B5701CE0085E321 /* ServerController.h */,
 				26FCE7031B5701CE0085E321 /* ServerController.m */,
+				26A743831B5B73F500C8FC95 /* LocationController.h */,
+				26A743841B5B73F500C8FC95 /* LocationController.m */,
 			);
 			path = ManyPlaces;
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26A743851B5B73F500C8FC95 /* LocationController.m in Sources */,
 				26A743801B5A1AA800C8FC95 /* ReviewTableViewCell.m in Sources */,
 				26FCE7071B571CE80085E321 /* Place.m in Sources */,
 				26FCE7041B5701CE0085E321 /* ServerController.m in Sources */,

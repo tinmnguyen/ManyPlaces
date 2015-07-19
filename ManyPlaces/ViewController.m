@@ -18,6 +18,7 @@
 
 @property (nonatomic,weak) IBOutlet UITextField *queryTextField;
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
+@property (nonatomic,weak) IBOutlet UIBarButtonItem *locationButton;
 
 @property (nonatomic,strong) NSTimer *searchTimer;
 @property (nonatomic,strong) NSString *lastSearchedText;

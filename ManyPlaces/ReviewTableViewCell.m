@@ -35,7 +35,7 @@
                                   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0]}
                                      context:nil].size;
     
-    return size.height + 35.0;
+    return size.height + 40.0;
 }
 
 - (void)setData:(NSDictionary *)jsonData
