@@ -84,7 +84,7 @@
     
     CLLocation *location = locations.lastObject;
     
-    if (location.horizontalAccuracy < 200) {
+    if (location.horizontalAccuracy > 200.0) {
         return;
     }
     
