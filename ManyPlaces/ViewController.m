@@ -6,11 +6,13 @@
 //  Copyright (c) 2015 Tin Nguyen. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "ServerController.h"
+#import "ActivityButton.h"
+#import "LocationController.h"
 #import "Place.h"
 #import "PlaceDetailViewController.h"
 #import "PlaceTableViewCell.h"
+#import "ServerController.h"
+#import "ViewController.h"
 
 #import <Motis/Motis.h>
 
@@ -18,7 +20,7 @@
 
 @property (nonatomic,weak) IBOutlet UITextField *queryTextField;
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
-@property (nonatomic,weak) IBOutlet UIBarButtonItem *locationButton;
+@property (nonatomic,weak) IBOutlet ActivityButton *locationButton;
 
 @property (nonatomic,strong) NSTimer *searchTimer;
 @property (nonatomic,strong) NSString *lastSearchedText;
@@ -38,6 +40,7 @@
     
     self.results = [NSArray new];
     [self configureTableView];
+    [self configureLocationButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -73,6 +76,30 @@
     UIEdgeInsets insets = self.tableView.contentInset;
     insets.top = 44;
     self.tableView.contentInset = insets;
+}
+
+- (void)configureLocationButton
+{
+    ActivityButton *button = [ActivityButton buttonWithType:UIButtonTypeSystem];
+    UIImage *icon = [[UIImage imageNamed:@"Location"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    button.frame = CGRectMake(0, 0, 24, 24);
+    [button setImage:icon forState:UIControlStateNormal];
+    button.tintColor = [UIColor lightGrayColor];
+    [button addTarget:self action:@selector(locationButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.locationButton = button;
+    
+}
+
+- (void)locationButtonDidPress:(ActivityButton *)sender
+{
+    [sender startAnimating];
+    
+    __weak typeof(self) weakSelf = self;
+    [[LocationController sharedInstance] getLocationWithCompletion:^(CLLocation *location) {
+        [weakSelf.locationButton stopAnimating];
+    }];
 }
 
 - (void)searchForQuery:(NSString *)text
