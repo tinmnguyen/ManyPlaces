@@ -7,7 +7,7 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'ManyPlaces' do
-pod 'GoogleMaps'
+#pod 'GoogleMaps'
 pod 'Motis'
 pod 'DCIntrospect-ARC'
 pod 'HCSStarRatingView', :git => 'https://github.com/hugocampossousa/HCSStarRatingView.git'
