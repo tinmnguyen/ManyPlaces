@@ -18,7 +18,7 @@
 
 + (instancetype)sharedInstance;
 
-- (void)searchPlacesFor:(NSString *)query withCompletion:(void (^)(NSArray *result))completion;
+- (void)searchPlacesFor:(NSString *)query withCompletion:(void (^)(NSArray *result,NSError *error))completion;
 
-- (void)getDetailsForPlace:(NSString *)placeId withCompleteion:(void (^)(PlaceDetails *details))completion;
+- (void)getDetailsForPlace:(NSString *)placeId withCompleteion:(void (^)(PlaceDetails *details, NSError *error))completion;
 @end

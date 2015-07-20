@@ -26,7 +26,7 @@
     return sharedInstance;
 }
 
-- (void)searchPlacesFor:(NSString *)query withCompletion:(void (^)(NSArray *))completion
+- (void)searchPlacesFor:(NSString *)query withCompletion:(void (^)(NSArray *,NSError *))completion
 {
     NSString *nospaces = [query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *urlstring = [kBASE_URL stringByAppendingString:[NSString stringWithFormat:kTEXTSEARCH_PATH, kAPI_KEY, nospaces ]];
@@ -35,7 +35,7 @@
         float lat = [LocationController sharedInstance].currentLocation.coordinate.latitude;
         float lng = [LocationController sharedInstance].currentLocation.coordinate.longitude;
         urlstring = [urlstring stringByAppendingString:[NSString stringWithFormat:@"&location=%f,%f&radius=5000",lat,lng]];
-    }e
+    }
     
     NSURL *url = [NSURL URLWithString:urlstring];
     
@@ -55,11 +55,11 @@
                 [results addObject:[[Place alloc] initWithJSON:p]];
             }
             
-            completion(results);
+            completion(results, nil);
             
         }
         else {
-            completion(nil);
+            completion(nil, error);
         }
         
     }];
@@ -67,7 +67,7 @@
     [task resume];
 }
 
-- (void)getDetailsForPlace:(NSString *)placeId withCompleteion:(void (^)(PlaceDetails *))completion
+- (void)getDetailsForPlace:(NSString *)placeId withCompleteion:(void (^)(PlaceDetails *details, NSError *error))completion
 {
     NSString *urlstring = [kBASE_URL stringByAppendingString:[NSString stringWithFormat:kDETAILSSEARCH_PATH, kAPI_KEY, placeId ]];
     NSURL *url = [NSURL URLWithString:urlstring];
@@ -81,11 +81,11 @@
             
             PlaceDetails *detail = [[PlaceDetails alloc] initWithJSON:dict[@"result"]];
             
-            completion(detail);
+            completion(detail, nil);
             
         }
         else {
-            completion(nil);
+            completion(nil, error);
         }
         
     }];

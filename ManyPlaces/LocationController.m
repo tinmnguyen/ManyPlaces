@@ -11,7 +11,7 @@
 @interface LocationController () <CLLocationManagerDelegate>
 
 @property (nonatomic,strong) CLLocationManager *locationManager;
-@property (nonatomic,copy) void (^locationCompletion)(CLLocation *location);
+@property (nonatomic,copy) void (^locationCompletion)(CLLocation *location, NSError *error);
 
 @end
 
@@ -41,7 +41,7 @@
     return self;
 }
 
-- (void)getLocationWithCompletion:(void (^)(CLLocation *))completion
+- (void)getLocationWithCompletion:(void (^)(CLLocation *location, NSError *error))completion
 {
     self.locationCompletion = completion;
     
@@ -93,13 +93,15 @@
     [self.locationManager stopUpdatingLocation];
     
     if (self.locationCompletion != nil) {
-        self.locationCompletion(self.currentLocation);
+        self.locationCompletion(self.currentLocation, nil);
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    
+    if (self.locationCompletion != nil) {
+        self.locationCompletion(nil, error);
+    }
 }
 
 @end

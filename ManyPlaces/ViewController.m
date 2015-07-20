@@ -107,12 +107,18 @@
     if (text != nil && text.length > 1) {
         
         __weak typeof(self) weakSelf = self;
-        [[ServerController sharedInstance] searchPlacesFor:text withCompletion:^(NSArray *result) {
-            weakSelf.results = result;
+        [[ServerController sharedInstance] searchPlacesFor:text withCompletion:^(NSArray *result, NSError *error) {
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView reloadData];
-            });
+            if (error == nil) {
+                weakSelf.results = result;
+            
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+            }
+            else {
+                
+            }
             
         }];
     }

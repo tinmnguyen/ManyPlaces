@@ -15,6 +15,6 @@
 
 + (instancetype)sharedInstance;
 
-- (void)getLocationWithCompletion:(void (^)(CLLocation *location))completion;
+- (void)getLocationWithCompletion:(void (^)(CLLocation *location, NSError *error))completion;
 
 @end

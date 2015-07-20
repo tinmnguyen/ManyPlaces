@@ -37,12 +37,18 @@
     [self setTitle:@"Details"];
     
     __weak typeof(self) weakSelf = self;
-    [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details) {
-        weakSelf.details = details;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf configureDetails];
-            [weakSelf configureTableView];
-        });
+    [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details, NSError *error) {
+        if (error == nil) {
+            weakSelf.details = details;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf configureDetails];
+                [weakSelf configureTableView];
+            });
+        }
+        else {
+            
+        }
+
     }];
 }
 
