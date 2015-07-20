@@ -15,6 +15,7 @@
 
 + (instancetype)sharedInstance;
 
+- (BOOL)isLocationAllowed;
 - (void)getLocationWithCompletion:(void (^)(CLLocation *location, NSError *error))completion;
 
 @end

@@ -94,10 +94,44 @@
 
 - (void)locationButtonDidPress:(ActivityButton *)sender
 {
+    
+    if (![[LocationController sharedInstance] isLocationAllowed]) {
+        
+        NSString *message = @"Location access is disabled, would you like to enable it in Settings?";
+        NSURL *settingsUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        UIAlertController *alert    = [UIAlertController alertControllerWithTitle:nil
+                                                                          message:message
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action) {}];
+        
+        UIAlertAction *yesAction    = [UIAlertAction actionWithTitle:@"Yes"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action) {
+                                                                 [[UIApplication sharedApplication]openURL:settingsUrl];
+                                                             }];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:yesAction];
+        
+        [self presentViewController:alert animated:YES completion:^{}];
+        
+        return;
+        
+    }
+    
     [sender startAnimating];
     
     __weak typeof(self) weakSelf = self;
-    [[LocationController sharedInstance] getLocationWithCompletion:^(CLLocation *location) {
+    [[LocationController sharedInstance] getLocationWithCompletion:^(CLLocation *location, NSError *error) {
+        if (error == nil) {
+            [weakSelf.locationButton setTintColor:[UIColor blueColor]];
+        }
+        else {
+            [weakSelf.locationButton setTintColor:[UIColor lightGrayColor]];
+        }
         [weakSelf.locationButton stopAnimating];
     }];
 }
