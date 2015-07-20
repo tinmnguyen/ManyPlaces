@@ -12,6 +12,7 @@ pod 'Motis'
 pod 'DCIntrospect-ARC'
 pod 'HCSStarRatingView', :git => 'https://github.com/hugocampossousa/HCSStarRatingView.git'
 pod 'SDWebImage', '~>3.7'
+pod 'CWStatusBarNotification', '~> 2.3.1'
 end
 
 target 'ManyPlacesTests' do

@@ -7,6 +7,7 @@
 //
 
 #define kAPI_KEY            @"AIzaSyCaHttKTZM9YRpydBI__YhJMppCoCp4984"
+//#define kAPI_KEY            @"AIzaCaHttKTZM9YRpydBI__YhJMppCoCp4984dd" //bad api key for testing
 #define kBASE_URL           @"https://maps.googleapis.com/maps/api/place"
 #define kTEXTSEARCH_PATH    @"/textsearch/json?key=%@&query=%@"
 #define kDETAILSSEARCH_PATH @"/details/json?key=%@&placeid=%@"

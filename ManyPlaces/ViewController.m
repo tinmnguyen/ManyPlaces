@@ -14,6 +14,7 @@
 #import "ServerController.h"
 #import "ViewController.h"
 
+#import <CWStatusBarNotification/CWStatusBarNotification.h>
 #import <Motis/Motis.h>
 
 @interface ViewController () <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
@@ -24,6 +25,7 @@
 
 @property (nonatomic,strong) NSTimer *searchTimer;
 @property (nonatomic,strong) NSString *lastSearchedText;
+@property (nonatomic,strong) CWStatusBarNotification *notificationBar;
 
 @property (nonatomic,strong) NSArray *results;
 
@@ -39,6 +41,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.results = [NSArray new];
+    self.notificationBar = [CWStatusBarNotification new];
     [self configureTableView];
     [self configureLocationButton];
 }
@@ -151,7 +154,7 @@
                 });
             }
             else {
-                
+                [weakSelf displayError:error];
             }
             
         }];
@@ -161,6 +164,18 @@
 - (void)triggerTimerSearch
 {
     [self searchForQuery:self.lastSearchedText];
+}
+
+- (void)displayError:(NSError *)error {
+    
+    NSString *message = error.localizedDescription;
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        weakSelf.notificationBar.notificationLabelBackgroundColor = [UIColor redColor];
+        weakSelf.notificationBar.notificationLabelTextColor = [UIColor whiteColor];
+        [weakSelf.notificationBar displayNotificationWithMessage:message forDuration:5.0];
+    });
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource

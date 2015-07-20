@@ -48,6 +48,18 @@
             NSError *jsonError = nil;
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
             
+            NSString *status = dict[@"status"];
+            
+            if (![status isEqualToString:@"OK"]) {
+                
+                NSError *googleError = [NSError errorWithDomain:@"google"
+                                                           code:200
+                                                       userInfo:@{NSLocalizedDescriptionKey:status}];
+                
+                completion(nil, googleError);
+                return;
+            }
+            
             NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:20];
             
             for(NSDictionary *p in dict[@"results"])
@@ -78,6 +90,17 @@
         if (error == nil) {
             NSError *jsonError = nil;
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            
+            NSString *status = dict[@"status"];
+            if (![status isEqualToString:@"OK"]) {
+                
+                NSError *googleError = [NSError errorWithDomain:@"google"
+                                                           code:200
+                                                       userInfo:@{NSLocalizedDescriptionKey:status}];
+                
+                completion(nil, googleError);
+                return;
+            }
             
             PlaceDetails *detail = [[PlaceDetails alloc] initWithJSON:dict[@"result"]];
             
