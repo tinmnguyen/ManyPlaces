@@ -50,7 +50,14 @@
             
             NSString *status = dict[@"status"];
             
-            if (![status isEqualToString:@"OK"]) {
+            if (![status isEqualToString:@"OK"] || jsonError != nil) {
+                
+                if (status == nil) {
+                    status = @"There was an error.";
+                }
+                else if (dict[@"error_message"] != nil) {
+                    status = dict[@"error_message"];
+                }
                 
                 NSError *googleError = [NSError errorWithDomain:@"google"
                                                            code:200
@@ -92,7 +99,14 @@
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
             
             NSString *status = dict[@"status"];
-            if (![status isEqualToString:@"OK"]) {
+            if (![status isEqualToString:@"OK"] || jsonError != nil) {
+                
+                if (status == nil) {
+                    status = @"There was an error.";
+                }
+                else if (dict[@"error_message"] != nil) {
+                    status = dict[@"error_message"];
+                }
                 
                 NSError *googleError = [NSError errorWithDomain:@"google"
                                                            code:200
