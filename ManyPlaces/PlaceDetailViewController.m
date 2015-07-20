@@ -9,6 +9,8 @@
 #import "PlaceDetailViewController.h"
 #import "ReviewTableViewCell.h"
 #import "ServerController.h"
+
+#import <CWStatusBarNotification/CWStatusBarNotification.h>
 #import <HCSStarRatingView/HCSStarRatingView.h>
 #import <MapKit/MapKit.h>
 
@@ -23,6 +25,7 @@
 
 @property (nonatomic,weak) IBOutlet UITableView *reviewsTableViews;
 
+@property (nonatomic,strong) CWStatusBarNotification *notificationBar;
 @property (nonatomic,strong) PlaceDetails *details;
 
 @end
@@ -35,6 +38,7 @@
     
     [self resetView];
     [self setTitle:@"Details"];
+    self.notificationBar = [CWStatusBarNotification new];
     
     __weak typeof(self) weakSelf = self;
     [[ServerController sharedInstance] getDetailsForPlace:self.currentPlace.placeId withCompleteion:^(PlaceDetails *details, NSError *error) {
@@ -46,7 +50,7 @@
             });
         }
         else {
-            
+            [self displayError:error];
         }
 
     }];
@@ -109,6 +113,18 @@
     [self.reviewsTableViews registerNib:[UINib nibWithNibName:@"ReviewTableViewCell" bundle:[NSBundle mainBundle]]
                  forCellReuseIdentifier:@"reviewCell"];
     [self.reviewsTableViews reloadData];
+}
+
+- (void)displayError:(NSError *)error {
+    
+    NSString *message = error.localizedDescription;
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        weakSelf.notificationBar.notificationLabelBackgroundColor = [UIColor redColor];
+        weakSelf.notificationBar.notificationLabelTextColor = [UIColor whiteColor];
+        [weakSelf.notificationBar displayNotificationWithMessage:message forDuration:5.0];
+    });
 }
 
 - (IBAction)phoneButtonDidPress:(UIButton *)sender {
