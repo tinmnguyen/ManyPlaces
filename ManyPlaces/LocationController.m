@@ -45,19 +45,18 @@
 {
     self.locationCompletion = completion;
     
-    if ([self isLocationAllowed]) {
-        [self.locationManager startUpdatingLocation];
-    }
-    {
+    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
+    }
+    else {
+        [self.locationManager startUpdatingLocation];
     }
 }
 
 - (BOOL)isLocationAllowed
 {
     return !(CLLocationManager.authorizationStatus == kCLAuthorizationStatusDenied ||
-             CLLocationManager.authorizationStatus == kCLAuthorizationStatusRestricted ||
-             CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined);
+             CLLocationManager.authorizationStatus == kCLAuthorizationStatusRestricted);
     
 }
 

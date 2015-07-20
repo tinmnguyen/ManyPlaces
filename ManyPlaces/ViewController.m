@@ -97,8 +97,8 @@
 
 - (void)locationButtonDidPress:(ActivityButton *)sender
 {
-    
-    if (![[LocationController sharedInstance] isLocationAllowed]) {
+    if ((CLLocationManager.authorizationStatus == kCLAuthorizationStatusDenied ||
+          CLLocationManager.authorizationStatus == kCLAuthorizationStatusRestricted)) {
         
         NSString *message = @"Location access is disabled, would you like to enable it in Settings?";
         NSURL *settingsUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
