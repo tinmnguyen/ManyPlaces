@@ -7,6 +7,7 @@
 //
 
 #import "ServerController.h"
+#import "LocationController.h"
 #import "Place.h"
 
 #import <Motis/Motis.h>
@@ -29,6 +30,13 @@
 {
     NSString *nospaces = [query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *urlstring = [kBASE_URL stringByAppendingString:[NSString stringWithFormat:kTEXTSEARCH_PATH, kAPI_KEY, nospaces ]];
+    
+    if ([LocationController sharedInstance].currentLocation != nil) {
+        float lat = [LocationController sharedInstance].currentLocation.coordinate.latitude;
+        float lng = [LocationController sharedInstance].currentLocation.coordinate.longitude;
+        urlstring = [urlstring stringByAppendingString:[NSString stringWithFormat:@"&location=%f,%f&radius=5000",lat,lng]];
+    }e
+    
     NSURL *url = [NSURL URLWithString:urlstring];
     
     NSURLSession *session = [NSURLSession sharedSession];
