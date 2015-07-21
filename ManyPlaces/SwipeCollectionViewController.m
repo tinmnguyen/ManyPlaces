@@ -8,6 +8,7 @@
 
 #import "DetailCollectionViewCell.h"
 #import "PlaceDetailViewController.h"
+#import "ServerController.h"
 #import "SwipeCollectionViewController.h"
 
 @interface SwipeCollectionViewController ()
@@ -41,6 +42,7 @@ static NSString * const reuseIdentifier = @"Cell";
                                             animated:NO];
     }
 
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,7 +62,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.flowLayout setMinimumLineSpacing:0.0];
     
     CGSize size = self.view.frame.size;
-    size.height -= 44;
+    size.height -= 64;
     
     [self.flowLayout setItemSize:size];
 }
@@ -91,13 +93,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 */
 
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-
-    return 1;
-}
-
+#pragma mark UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
@@ -108,9 +104,7 @@ static NSString * const reuseIdentifier = @"Cell";
     DetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
-    PlaceDetailViewController *placeVC = [sb instantiateViewControllerWithIdentifier:@"placedetailview"];
+    PlaceDetailViewController *placeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"placedetailview"];
     placeVC.currentPlace = self.results[indexPath.row];
     
     cell.detailViewController = placeVC;
@@ -119,6 +113,28 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark <UICollectionViewDelegate>
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSInteger currentOffset = scrollView.contentOffset.x;
+    NSInteger maxOffset = scrollView.contentSize.width - scrollView.frame.size.width;
+    
+    NSInteger scrollOffset = maxOffset - currentOffset;
+    
+    __weak typeof(self) weakSelf = self;
+    if (scrollOffset > 0 && scrollOffset < 400 && self.results.count < 60) {
+        [[ServerController sharedInstance] getNextResultsWithCompletion:^(NSArray *result, NSError *error) {
+            
+            if(error == nil && result.count > 0) {
+                weakSelf.results = [weakSelf.results arrayByAddingObjectsFromArray:result];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.collectionView reloadData];
+                });
+            }
+        }];
+    }
+}
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
