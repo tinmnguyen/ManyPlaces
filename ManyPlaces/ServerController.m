@@ -12,6 +12,12 @@
 
 #import <Motis/Motis.h>
 
+@interface ServerController ()
+
+@property (nonatomic,strong) NSString *nextToken;
+
+@end
+
 @implementation ServerController
 
 + (instancetype)sharedInstance
@@ -41,6 +47,7 @@
     
     NSURLSession *session = [NSURLSession sharedSession];
     
+    __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         if(error == nil) {
@@ -66,6 +73,70 @@
                 completion(nil, googleError);
                 return;
             }
+            
+            weakSelf.nextToken = dict[@"next_page_token"];
+            
+            NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:20];
+            
+            for(NSDictionary *p in dict[@"results"])
+            {
+                [results addObject:[[Place alloc] initWithJSON:p]];
+            }
+            
+            completion(results, nil);
+            
+        }
+        else {
+            completion(nil, error);
+        }
+        
+    }];
+    
+    [task resume];
+}
+
+- (void)getNextResultsWithCompletion:(void (^)(NSArray *,NSError *))completion
+{
+    if (self.nextToken == nil) {
+        
+        completion(@[],nil);
+        
+        return;
+    }
+    
+    NSString *urlstring = [kBASE_URL stringByAppendingString:[NSString stringWithFormat:kMORERESULTS_PATH, kAPI_KEY, self.nextToken]];
+    self.nextToken = nil;
+    NSURL *url = [NSURL URLWithString:urlstring];
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    __weak typeof(self) weakSelf = self;
+    NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if(error == nil) {
+            
+            NSError *jsonError = nil;
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            
+            NSString *status = dict[@"status"];
+            
+            if (![status isEqualToString:@"OK"] || jsonError != nil) {
+                
+                if (status == nil) {
+                    status = @"There was an error.";
+                }
+                else if (dict[@"error_message"] != nil) {
+                    status = dict[@"error_message"];
+                }
+                
+                NSError *googleError = [NSError errorWithDomain:@"google"
+                                                           code:200
+                                                       userInfo:@{NSLocalizedDescriptionKey:status}];
+                
+                completion(nil, googleError);
+                return;
+            }
+            
+            weakSelf.nextToken = dict[@"next_page_token"];
             
             NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:20];
             

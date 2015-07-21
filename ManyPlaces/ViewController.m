@@ -223,6 +223,26 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSInteger currentOffset = scrollView.contentOffset.y;
+    NSInteger maxOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+
+    __weak typeof(self) weakSelf = self;
+    if (maxOffset - currentOffset < 350 && self.results.count < 60) {
+        [[ServerController sharedInstance] getNextResultsWithCompletion:^(NSArray *result, NSError *error) {
+            
+            if(error == nil && result.count > 0) {
+                weakSelf.results = [weakSelf.results arrayByAddingObjectsFromArray:result];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+            }
+        }];
+    }
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
