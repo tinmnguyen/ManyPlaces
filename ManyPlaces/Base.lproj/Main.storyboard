@@ -96,17 +96,43 @@
                     <connections>
                         <outlet property="queryTextField" destination="d3f-sC-OPM" id="Shw-7f-STF"/>
                         <outlet property="tableView" destination="lmn-Ix-0Ag" id="q5D-3a-85c"/>
-                        <segue destination="ChV-7z-45g" kind="show" identifier="placeDetail" id="0wF-4e-iq9"/>
+                        <segue destination="tvU-Pl-6rt" kind="show" identifier="collectionSegue" id="qpt-Bc-K0N"/>
+                        <segue destination="ChV-7z-45g" kind="show" identifier="placeDetail" id="DSI-r9-EA6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1236" y="246"/>
         </scene>
+        <!--Swipe Collection View Controller-->
+        <scene sceneID="LDV-Sb-M8x">
+            <objects>
+                <collectionViewController id="tvU-Pl-6rt" customClass="SwipeCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="EOf-8f-krR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c4c-vQ-lSu">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="tvU-Pl-6rt" id="t9M-pg-WOq"/>
+                            <outlet property="delegate" destination="tvU-Pl-6rt" id="WjJ-iO-KzF"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLi-97-rym" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1600" y="972"/>
+        </scene>
         <!--Place Detail View Controller-->
         <scene sceneID="TnN-UY-BL1">
             <objects>
-                <viewController id="ChV-7z-45g" customClass="PlaceDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="placedetailview" id="ChV-7z-45g" customClass="PlaceDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BVG-wS-2nB"/>
                         <viewControllerLayoutGuide type="bottom" id="faK-Hc-1HD"/>
@@ -225,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edh-ov-d8b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1936" y="246"/>
+            <point key="canvasLocation" x="2042" y="235"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4lf-Lc-2eA">

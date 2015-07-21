@@ -12,6 +12,7 @@
 #import "PlaceDetailViewController.h"
 #import "PlaceTableViewCell.h"
 #import "ServerController.h"
+#import "SwipeCollectionViewController.h"
 #import "ViewController.h"
 
 #import <CWStatusBarNotification/CWStatusBarNotification.h>
@@ -69,6 +70,15 @@
     if ([segueName isEqualToString:@"placeDetail"]) {
         PlaceDetailViewController *placeView = (PlaceDetailViewController *)segue.destinationViewController;
         placeView.currentPlace = self.results[self.tableView.indexPathForSelectedRow.row];
+    }
+    
+    if ([segueName isEqualToString:@"collectionSegue"]) {
+        SwipeCollectionViewController *swipeView = (SwipeCollectionViewController *)segue.destinationViewController;
+        
+        swipeView.results = self.results;
+        swipeView.index = self.tableView.indexPathForSelectedRow.row;
+        
+        
     }
 }
 
@@ -208,7 +218,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.queryTextField resignFirstResponder];
-    [self performSegueWithIdentifier:@"placeDetail" sender:tableView];
+    //[self performSegueWithIdentifier:@"placeDetail" sender:tableView];
+    [self performSegueWithIdentifier:@"collectionSegue" sender:tableView];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

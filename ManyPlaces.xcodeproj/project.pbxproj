@@ -20,6 +20,8 @@
 		26A743821B5A1AC900C8FC95 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26A743811B5A1AC900C8FC95 /* ReviewTableViewCell.xib */; };
 		26A743851B5B73F500C8FC95 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A743841B5B73F500C8FC95 /* LocationController.m */; };
 		26A7438F1B5C488B00C8FC95 /* ActivityButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A7438E1B5C488B00C8FC95 /* ActivityButton.m */; };
+		26A743A21B5DE29400C8FC95 /* SwipeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A743A11B5DE29400C8FC95 /* SwipeCollectionViewController.m */; };
+		26A743A51B5DE5D100C8FC95 /* DetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A743A41B5DE5D100C8FC95 /* DetailCollectionViewCell.m */; };
 		26FCE7041B5701CE0085E321 /* ServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE7031B5701CE0085E321 /* ServerController.m */; };
 		26FCE7071B571CE80085E321 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FCE7061B571CE80085E321 /* Place.m */; };
 		26FCE70B1B586ED60085E321 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCE70A1B586ED60085E321 /* QuartzCore.framework */; };
@@ -64,6 +66,10 @@
 		26A743841B5B73F500C8FC95 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		26A7438D1B5C488B00C8FC95 /* ActivityButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityButton.h; sourceTree = "<group>"; };
 		26A7438E1B5C488B00C8FC95 /* ActivityButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityButton.m; sourceTree = "<group>"; };
+		26A743A01B5DE29400C8FC95 /* SwipeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeCollectionViewController.h; sourceTree = "<group>"; };
+		26A743A11B5DE29400C8FC95 /* SwipeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeCollectionViewController.m; sourceTree = "<group>"; };
+		26A743A31B5DE5D100C8FC95 /* DetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCollectionViewCell.h; sourceTree = "<group>"; };
+		26A743A41B5DE5D100C8FC95 /* DetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCollectionViewCell.m; sourceTree = "<group>"; };
 		26FCE7021B5701CE0085E321 /* ServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerController.h; sourceTree = "<group>"; };
 		26FCE7031B5701CE0085E321 /* ServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerController.m; sourceTree = "<group>"; };
 		26FCE7051B571CE80085E321 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
@@ -123,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				26A7438C1B5C487400C8FC95 /* Controls */,
-				26A743781B59834D00C8FC95 /* TableViewCells */,
+				26A743781B59834D00C8FC95 /* Cells */,
 				26FCE7121B589DAB0085E321 /* ServerObjects */,
 				26FCE70C1B5889080085E321 /* ViewControllers */,
 				267B942C1B56CC0100027A94 /* AppDelegate.h */,
@@ -166,7 +172,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		26A743781B59834D00C8FC95 /* TableViewCells */ = {
+		26A743781B59834D00C8FC95 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				26A743791B59836E00C8FC95 /* PlaceTableViewCell.h */,
@@ -175,8 +181,10 @@
 				26A7437E1B5A1AA800C8FC95 /* ReviewTableViewCell.h */,
 				26A7437F1B5A1AA800C8FC95 /* ReviewTableViewCell.m */,
 				26A743811B5A1AC900C8FC95 /* ReviewTableViewCell.xib */,
+				26A743A31B5DE5D100C8FC95 /* DetailCollectionViewCell.h */,
+				26A743A41B5DE5D100C8FC95 /* DetailCollectionViewCell.m */,
 			);
-			name = TableViewCells;
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		26A7438C1B5C487400C8FC95 /* Controls */ = {
@@ -195,6 +203,8 @@
 				267B94301B56CC0100027A94 /* ViewController.m */,
 				26FCE70D1B5889BD0085E321 /* PlaceDetailViewController.h */,
 				26FCE70E1B5889BD0085E321 /* PlaceDetailViewController.m */,
+				26A743A01B5DE29400C8FC95 /* SwipeCollectionViewController.h */,
+				26A743A11B5DE29400C8FC95 /* SwipeCollectionViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -391,6 +401,8 @@
 				267B942E1B56CC0100027A94 /* AppDelegate.m in Sources */,
 				26FCE7151B589DCE0085E321 /* PlaceDetails.m in Sources */,
 				26A7438F1B5C488B00C8FC95 /* ActivityButton.m in Sources */,
+				26A743A21B5DE29400C8FC95 /* SwipeCollectionViewController.m in Sources */,
+				26A743A51B5DE5D100C8FC95 /* DetailCollectionViewCell.m in Sources */,
 				267B942B1B56CC0100027A94 /* main.m in Sources */,
 				26A7437B1B59836E00C8FC95 /* PlaceTableViewCell.m in Sources */,
 			);
