@@ -63,6 +63,16 @@
     [self configureMapView];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    self.mapView.showsUserLocation = NO;
+    self.mapView.delegate = nil;
+    [self.mapView removeFromSuperview];
+    self.mapView = nil;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
