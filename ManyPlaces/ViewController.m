@@ -194,7 +194,13 @@
 {
     PlaceTableViewCell *cell = (PlaceTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    [cell setPlace:self.results[indexPath.row]];
+    if (indexPath.row < self.results.count) { // why do you even.. maybe refreshing too fast
+        [cell setPlace:self.results[indexPath.row]];
+    }
+    else {
+        
+    }
+    
     
     return cell;
 }
@@ -214,6 +220,7 @@
     
     if (newText.length > 2 && textField.text.length < newText.length && ![string isEqualToString:@"\n"]) {
         
+        [self.notificationBar dismissNotification];
         [self.searchTimer invalidate];
         self.searchTimer = [NSTimer timerWithTimeInterval:0.15
                                                    target:self
